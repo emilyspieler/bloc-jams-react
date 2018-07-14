@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 
@@ -65,25 +66,25 @@ import albumData from './../data/albums';
               <th>Track</th>
               <th>Title</th>
               <th>Duration</th>
-            </tr>
-           {
-             this.state.album.songs.map( (song, index) =>
-            <span className="ion-play">
-              <ion-icon name="arrow-dropright" onMouseEnter = {this.audioElement.play}></ion-icon>
-              <ion-icon name="pause"></ion-icon>
-              <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-                <td>{index + 1}</td>
-                <td>{song.title} </td>
-                <td>{song.duration} </td>
               </tr>
-            </span>
-          )
+             {
+               this.state.album.songs.map( (song, index) =>
+              <span className="ion-play">
+                <ion-icon name="arrow-dropright" onMouseEnter = {this.audioElement.play}></ion-icon>
+                <ion-icon name="pause"></ion-icon>
+                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+                  <td>{index + 1}</td>
+                  <td>{song.title} </td>
+                  <td>{song.duration} </td>
+                </tr>
+              </span>
+              )
+        }
+              </tbody>
+         </table>
+        </section>
+      );
     }
-          </tbody>
-     </table>
-    </section>
-  );
-}
-}
+  }
 
 export default Album;
