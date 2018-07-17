@@ -45,8 +45,8 @@ import PlayerBar from './PlayerBar';
    }
 
    handleSongClick(song) {
-       const isSameSong = this.state.currentSong === song;
-       if (this.state.isPlaying && isSameSong) {
+    const isSameSong = this.state.currentSong === song;
+    if (this.state.isPlaying && isSameSong) {
     this.pause();
     } else {
      if (!isSameSong) { this.setSong(song); }
@@ -54,31 +54,30 @@ import PlayerBar from './PlayerBar';
     }
      }
 
-     handlePrevClick() {
-     const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-     const newIndex = Math.max(0, currentIndex - 1);
-     const newSong = this.state.album.songs[newIndex];
-     this.setSong(newSong);
-     this.play();
-}
-
-  handleNextClick() {
+  handlePrevClick() {
     const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-    const newIndex = Math.max(0, currentIndex + 1);
+    const newIndex = Math.max(0, currentIndex - 1);
     const newSong = this.state.album.songs[newIndex];
     this.setSong(newSong);
     this.play();
-    }
+}
+
+handleNextClick() {
+  const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+  const newIndex = Math.max(0, currentIndex + 1);
+  const newSong = this.state.album.songs[newIndex];
+  this.setSong(newSong);
+  this.play();
+  }
 
 
-    displayIcons(song, index){
-       if(song === this.state.currentSong && this.state.isPlaying === true && this.state.isHovering === true){
-         return <span className="icon ion-md-pause"></span>
-       } else if (song === this.state.currentHoveredSong && this.state.isPlaying === false && this.state.isHovering === true){
-         return <span className="icon ion-md-play"></span>
-       } else {
-         return index + 1
-       }
+displayIcons(song, index){
+   if(song === this.state.currentSong && this.state.isPlaying === true && this.state.isHovering === true){       return <span className="icon ion-md-pause"></span>
+     } else if (song === this.state.currentHoveredSong && this.state.isPlaying === false && this.state.isHovering === true){
+     return <span className="icon ion-md-play"></span>
+     } else {
+    return index + 1
+     }
      }
 
     render() {
@@ -99,18 +98,15 @@ import PlayerBar from './PlayerBar';
              <col id="song-duration-column" />
            </colgroup>
            <tbody>
-             {
-               this.state.album.songs.map( (song, index) =>
-              <span className="ion-play">
-                <tr className='song' key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.hoverSongNumber(song)} onMouseLeave={() => this.leaveSongNumber()}>
+             {this.state.album.songs.map( (song, index) =>
+                <tr className='song' key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.hoverSongNumber(song)} onMouseLeave={() => this.leaveSongNumber()} >
                   <td>{this.displayIcons(song, index)}</td>
                   <td>{song.title} </td>
                   <td>{song.duration} </td>
                 </tr>
-              </span>
               )
             }
-              </tbody>
+            </tbody>
          </table>
          <PlayerBar
          isPlaying={this.state.isPlaying}
