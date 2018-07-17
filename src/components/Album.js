@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
@@ -30,14 +29,14 @@ import PlayerBar from './PlayerBar';
     this.setState({ isHovering: false });
   }
 
-  play() {
-    this.audioElement.play();
-    this.setState({ isPlaying: true });
+    play() {
+        this.audioElement.play();
+        this.setState({ isPlaying: true });
       }
 
-  pause() {
-      this.audioElement.pause();
-      this.setState({ isPlaying: false });
+    pause() {
+        this.audioElement.pause();
+        this.setState({ isPlaying: false });
       }
 
   setSong(song) {
@@ -48,28 +47,21 @@ import PlayerBar from './PlayerBar';
    handleSongClick(song) {
        const isSameSong = this.state.currentSong === song;
        if (this.state.isPlaying && isSameSong) {
-      this.pause();
+    this.pause();
     } else {
      if (!isSameSong) { this.setSong(song); }
     this.play();
     }
      }
 
-    handlePrevClick() {
-      const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-      const newIndex = Math.max(0, currentIndex - 1);
-      const newSong = this.state.album.songs[newIndex];
-      this.setSong(newSong);
-      this.play();
-    }
+     handlePrevClick() {
+    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+     const newIndex = Math.max(0, currentIndex - 1);
+     const newSong = this.state.album.songs[newIndex];
+     this.setSong(newSong);
+     this.play();
+}
 
-    handleNextClick() {
-      const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
-      const newIndex = Math.max(0, currentIndex + 1);
-      const newSong = this.state.album.songs[newIndex];
-      this.setSong(newSong);
-      this.play();
-    }
 
     displayIcons(song, index){
        if(song === this.state.currentSong && this.state.isPlaying === true && this.state.isHovering === true){
@@ -113,16 +105,15 @@ import PlayerBar from './PlayerBar';
               </tbody>
          </table>
          <PlayerBar
-              isPlaying={this.state.isPlaying}
-              currentSong={this.state.currentSong}
-              handleSongClick={() => this.handleSongClick(this.state.currentSong)}
-              handlePrevClick={() => this.handlePrevClick()}
-              handleNextClick={() => this.handleNextClick()}
-            />
-       </section>
-     );
-   }
- }
+         isPlaying={this.state.isPlaying}
+         currentSong={this.state.currentSong}
+         handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+         handlePrevClick={() => this.handlePrevClick()}
+       />
+        </section>
+      );
+    }
+  }
 
 
 export default Album;
