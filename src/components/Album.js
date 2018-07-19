@@ -15,7 +15,7 @@ import PlayerBar from './PlayerBar';
       currentTime: 0,
       duration: album.songs[0].duration,
       currentVolume: 0,
-      fullVolume: 100,
+      fullVolume: 1,
       isPlaying: false,
       isHovering: false,
       currentHoverSong: null
@@ -119,11 +119,20 @@ displayIcons(song, index){
      this.setState({ currentTime: newTime });
    }
 
+  formatTime(newTime, index) {
+    if (newTime === 1) // this is not correct but just a placeholder. Fix when you have time to look at the function again.
+    {return true }
+    else {
+      return "-:--"
+    }
+	}
+
   handleVolumeChange(e) {
-     var player = document.getElementById('volume-control');
-     console.log('Before: ' + player.currentVolume);
-     player.volume = e / 100;
-     console.log('After: ' + player.fullVolume);
+    this.audioElement.currentVolume = e.target.value;
+    this.setState({  currentVolume: e.target.value });
+      console.log('Input Value: ' + e.target.value);
+      console.log('Before: ' + this.state.currentVolume);
+      console.log('After: ' + this.state.fullVolume);
    }
 
     render() {
@@ -166,6 +175,7 @@ displayIcons(song, index){
          handleNextClick={() => this.handleNextClick()}
          handleTimeChange={(e) => this.handleTimeChange(e)}
          handleVolumeChange={(e) => this.handleVolumeChange(e)}
+         formatTime={(newTime, index) => this.formatTime(newTime, index)}
        />
         </section>
       );
