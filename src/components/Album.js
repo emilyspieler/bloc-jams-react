@@ -124,7 +124,7 @@ displayIcons(song, index){
       formatTime(currentTime) {
         var hours = Math.floor(currentTime/ 3600);
         var minutes = Math.floor((currentTime - (hours * 3600)) / 60);
-        var seconds = currentTime - (hours * 3600) - (minutes * 60);
+        var seconds = Math.floor(currentTime - (hours * 3600) - (minutes * 60));
         var time = "";
 
         if (hours !== 0) {
@@ -138,12 +138,10 @@ displayIcons(song, index){
           time = seconds+"s";
         }
         else {
-          time += (seconds < 10) ? "0"+seconds : String(seconds);
+          time += (seconds < 10) ? "0"+ seconds : String(seconds);
         }
         return time;
        }
-
-
 
   handleVolumeChange(e) {
   const newVolume = e.target.value;
@@ -184,7 +182,7 @@ displayIcons(song, index){
          currentSong={this.state.currentSong}
          currentTime={this.audioElement.currentTime}
          duration={this.audioElement.duration}
-         currentVolume={this.audioElement.currentVolume}
+         currentVolume={this.state.currentVolume}
          fullVolume={this.audioElement.fullVolume}
          formatTime={() => this.formatTime(this.state.currentTime)}
          handleSongClick={() => this.handleSongClick(this.state.currentSong)}

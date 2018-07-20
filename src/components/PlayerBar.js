@@ -18,7 +18,7 @@ import React, { Component } from 'react';
          </button>
        </section>
        <section id="time-control">
-       <div className="current-time">{this.props.currentTime}</div>
+       <div className="current-time">{this.props.formatTime(this.props.currentTime)}</div>
          <input
            type="range"
            className="seek-bar"
@@ -26,7 +26,7 @@ import React, { Component } from 'react';
            max="1"
            min="0"
            step="0.01"
-           onChange={this.props.handleVolumeChange}
+           onChange={this.props.handleTimeChange}
          />
          <div className="total-time"></div>
        </section>
