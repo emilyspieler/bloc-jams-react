@@ -39,6 +39,7 @@ import PlayerBar from './PlayerBar';
         volumefull: e => {
           this.setState({ fullVolume: this.audioElement.fullVolume });
       }
+
     };
         this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
         this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
@@ -105,7 +106,8 @@ handleNextClick() {
 
 
 displayIcons(song, index){
-   if(song === this.state.currentSong && this.state.isPlaying === true && this.state.isHovering === true){       return <span className="icon ion-md-pause"></span>
+   if(song === this.state.currentSong && this.state.isPlaying === true && this.state.isHovering === true)
+   { return <span className="icon ion-md-pause"></span>
      } else if (song === this.state.currentHoveredSong && this.state.isPlaying === false && this.state.isHovering === true){
      return <span className="icon ion-md-play"></span>
      } else {
@@ -119,21 +121,35 @@ displayIcons(song, index){
      this.setState({ currentTime: newTime });
    }
 
-  formatTime(newTime, index) {
-    if (newTime === 1) // this is not correct but just a placeholder. Fix when you have time to look at the function again.
-    {return true }
-    else {
-      return "-:--"
-    }
-	}
+      formatTime(currentTime) {
+        var hours = Math.floor(currentTime/ 3600);
+        var minutes = Math.floor((currentTime - (hours * 3600)) / 60);
+        var seconds = currentTime - (hours * 3600) - (minutes * 60);
+        var time = "";
+
+        if (hours !== 0) {
+          time = hours+":";
+        }
+        if (minutes !== 0 || time !== "") {
+          minutes = (minutes < 10 && time !== "") ? "0"+minutes : String(minutes);
+          time += minutes+":";
+        }
+        if (time === "") {
+          time = seconds+"s";
+        }
+        else {
+          time += (seconds < 10) ? "0"+seconds : String(seconds);
+        }
+        return time;
+       }
+
+
 
   handleVolumeChange(e) {
-    this.audioElement.currentVolume = e.target.value;
-    this.setState({  currentVolume: e.target.value });
-      console.log('Input Value: ' + e.target.value);
-      console.log('Before: ' + this.state.currentVolume);
-      console.log('After: ' + this.state.fullVolume);
-   }
+  const newVolume = e.target.value;
+  this.audioElement.volume = newVolume;
+  this.setState({ currentVolume: newVolume });
+}
 
     render() {
       return (
@@ -170,12 +186,12 @@ displayIcons(song, index){
          duration={this.audioElement.duration}
          currentVolume={this.audioElement.currentVolume}
          fullVolume={this.audioElement.fullVolume}
+         formatTime={() => this.formatTime(this.state.currentTime)}
          handleSongClick={() => this.handleSongClick(this.state.currentSong)}
          handlePrevClick={() => this.handlePrevClick()}
          handleNextClick={() => this.handleNextClick()}
          handleTimeChange={(e) => this.handleTimeChange(e)}
          handleVolumeChange={(e) => this.handleVolumeChange(e)}
-         formatTime={(newTime, index) => this.formatTime(newTime, index)}
        />
         </section>
       );
