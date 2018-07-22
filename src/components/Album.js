@@ -14,7 +14,7 @@ import PlayerBar from './PlayerBar';
       currentSong: album.songs[0],
       currentTime: 0,
       duration: album.songs[0].duration,
-      currentVolume: 0,
+      currentVolume: .5,
       fullVolume: 1,
       isPlaying: false,
       isHovering: false,
@@ -122,26 +122,32 @@ displayIcons(song, index){
    }
 
       formatTime(currentTime) {
-        var hours = Math.floor(currentTime/ 3600);
-        var minutes = Math.floor((currentTime - (hours * 3600)) / 60);
-        var seconds = Math.floor(currentTime - (hours * 3600) - (minutes * 60));
-        var time = "";
 
-        if (hours !== 0) {
-          time = hours+":";
-        }
-        if (minutes !== 0 || time !== "") {
-          minutes = (minutes < 10 && time !== "") ? "0"+minutes : String(minutes);
-          time += minutes+":";
-        }
-        if (time === "") {
-          time = seconds+"s";
-        }
-        else {
-          time += (seconds < 10) ? "0"+ seconds : String(seconds);
-        }
-        return time;
+      var s = Math.floor(currentTime%60);
+      var m = Math.floor((currentTime*1000/(1000*60))%60);
+      var strFormat = "M:SS";
+
+      if(s < 10) s = "0" + s;
+
+      strFormat = strFormat.replace(/M/, m);
+      strFormat = strFormat.replace(/SS/, s);
+
+      return strFormat;
        }
+
+       formatDuration(currentTime) {
+
+       var s = Math.floor(currentTime%60);
+       var m = Math.floor((currentTime*1000/(1000*60))%60);
+       var strFormat = "M:SS";
+
+       if(s < 10) s = "0" + s;
+
+       strFormat = strFormat.replace(/M/, m);
+       strFormat = strFormat.replace(/SS/, s);
+
+       return strFormat;
+        }
 
   handleVolumeChange(e) {
   const newVolume = e.target.value;
@@ -171,7 +177,7 @@ displayIcons(song, index){
                 <tr className='song' key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.hoverSongNumber(song)} onMouseLeave={() => this.leaveSongNumber()} >
                   <td>{this.displayIcons(song, index)}</td>
                   <td>{song.title} </td>
-                  <td>{song.duration} </td>
+                  <td>{this.formatTime(song.duration)}</td>
                 </tr>
               )
             }
@@ -190,6 +196,7 @@ displayIcons(song, index){
          handleNextClick={() => this.handleNextClick()}
          handleTimeChange={(e) => this.handleTimeChange(e)}
          handleVolumeChange={(e) => this.handleVolumeChange(e)}
+         formatDuration={() => this.formatDuration(this.state.duration)}
        />
         </section>
       );
