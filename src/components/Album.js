@@ -159,7 +159,9 @@ displayIcons(song, index){
       return (
         <section className="album">
         <section id="album-info">
+        <div className="container">
            <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
+           </div>
            <div className="album-details">
            <h1 id="album-title">{this.state.album.title}</h1>
            <h2 className="artist">{this.state.album.artist}</h2>
