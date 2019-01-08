@@ -159,15 +159,19 @@ displayIcons(song, index){
       return (
         <section className="album">
         <section id="album-info">
-        <div className="container">
-           <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
+      <div className="row">
+         <div className="col-md-6">
+            <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
            </div>
+          <div className="col-md-3">
            <div className="album-details">
            <h1 id="album-title">{this.state.album.title}</h1>
            <h2 className="artist">{this.state.album.artist}</h2>
            <div id="release-info">{this.state.album.releaseInfo}</div>
            </div>
-          </section>
+         </div>
+
+      <div className="col-md-3">
            <table id="song-list">
            <colgroup>
              <col id="song-number-column" />
@@ -175,6 +179,7 @@ displayIcons(song, index){
              <col id="song-duration-column" />
            </colgroup>
            <tbody>
+
              {this.state.album.songs.map( (song, index) =>
                 <tr className='song' key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.hoverSongNumber(song)} onMouseLeave={() => this.leaveSongNumber()} >
                   <td>{this.displayIcons(song, index)}</td>
@@ -185,6 +190,11 @@ displayIcons(song, index){
             }
             </tbody>
          </table>
+
+      </div>
+    </div>
+           </section>
+           <hr></hr>
          <PlayerBar
          isPlaying={this.state.isPlaying}
          currentSong={this.state.currentSong}
@@ -200,6 +210,7 @@ displayIcons(song, index){
          handleVolumeChange={(e) => this.handleVolumeChange(e)}
          formatDuration={() => this.formatDuration(this.state.duration)}
        />
+       <hr></hr>
         </section>
       );
     }

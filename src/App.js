@@ -8,17 +8,21 @@ import Album from './components/Album';
 class App extends Component {
   render() {
     return (
+
       <div className="App">
         <header>
-            <h1>Bloc Jams</h1>
-            <h2>Turn The Music up!</h2>
-            <nav>
+        <div className="jumbotron">
+            <h1 className="display-4">Jam Time</h1>
+            <h2 className="lead">Turn The Music up!</h2>
+              </div>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <ul>
-               <li><Link to='/'>Landing</ Link></li>
-               <li><Link to='/library'>Library</ Link></li>
+               <li className="navbar-brand"><Link to='/'>About</ Link></li>
+               <li className="navbar-brand"><Link to='/library'>Music Library</ Link></li>
                </ul>
              </nav>
         </header>
+
         <main>
           <Route exact path="/" component={Landing} />
           <Route path="/library" component={Library} />
