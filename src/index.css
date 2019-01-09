@@ -13,3 +13,30 @@ img {
 table#song-list{
   margin: auto;
 }
+
+input[type="range"]{
+    height: 15px;
+    width: 5px;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    width: 75%;
+     -webkit-transition: .2s;
+}
+
+div.row {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+td {
+  padding: 10px;
+}
+
+body {
+  background-image: url("/assets/images/blurred_backgrounds/blur_bg_3.jpg");
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}

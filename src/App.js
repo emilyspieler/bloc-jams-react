@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         <header>
         <div className="jumbotron">
-            <h1 className="display-4">Jam Time</h1>
+          <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo"></img>
             <h2 className="lead">Turn The Music up!</h2>
               </div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
