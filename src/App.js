@@ -12,10 +12,10 @@ class App extends Component {
       <div className="App">
         <header>
         <div className="jumbotron">
-          <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo"></img>
+          <img src="/assets/images/bloc_jams_logo.png" alt="bloc jams logo"></img>
             <h2 className="lead">Turn The Music up!</h2>
               </div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light">
               <ul>
                <li className="navbar-brand"><Link to='/'>About</ Link></li>
                <li className="navbar-brand"><Link to='/library'>Music Library</ Link></li>

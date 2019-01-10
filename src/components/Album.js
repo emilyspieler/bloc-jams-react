@@ -153,7 +153,7 @@ displayIcons(song, index){
   const newVolume = e.target.value;
   this.audioElement.volume = newVolume;
   this.setState({ currentVolume: newVolume });
-}
+  }
 
     render() {
       return (

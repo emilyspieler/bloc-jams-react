@@ -19,10 +19,10 @@ class Library extends Component {
                </div>
                   <div className="col-sm-6">
             <div className="centered">
-            <div className="card">
-               <div>{album.title}</div>
-               <div>{album.artist}</div>
-               <div>{album.songs.length} songs</div>
+            <div className="point">
+               <div><h1>{album.title}</h1></div>
+               <div><h2>{album.artist}</h2></div>
+               <div><h2>{album.songs.length} songs</h2></div>
                </div>
             </div>
           </div>

@@ -1,17 +1,47 @@
 div.jumbotron {
-  margin-bottom: 0;
+  background-color: inherit;
+  padding-bottom: 5%;
+}
+
+body {
+  background-color: inherit;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light{
+  background-color: black;
+  opacity: 0.5;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 div.container {
   margin: auto;
 }
 
-img {
-  max-width: 500px;
+div.point{
+  color: white;
+}
+
+div.card {
+  background-color: inherit;
+}
+
+div.album-details{
+  color:white;
+}
+
+div.current-time{
+  color: white;
+}
+
+section#volume-control{
+  padding-top: 5%;
+  color: white;
 }
 
 table#song-list{
   margin: auto;
+  color: white;
 }
 
 input[type="range"]{
@@ -21,22 +51,46 @@ input[type="range"]{
     outline: none;
     opacity: 0.7;
     width: 75%;
-     -webkit-transition: .2s;
+    -webkit-transition: .2s;
+
 }
 
 div.row {
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-top: 10%;
+  padding-bottom: 10%;
 }
 
 td {
   padding: 10px;
 }
 
-body {
+div.App{
   background-image: url("/assets/images/blurred_backgrounds/blur_bg_3.jpg");
   background-color: #cccccc;
   background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
+
+}
+
+h2 {
+  color: white;
+}
+
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: white;
 }
